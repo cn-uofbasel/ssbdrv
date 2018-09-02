@@ -21,6 +21,17 @@ available drives. The `-peer` option selects a specific SSB pub (peer
 node); the default behavior is to connect to the locally running SSB
 program at port 8008 (e.g. patchwork or sbot).
 
+__Code status:__ This is a proof-of-concept and is not a well-curated
+Python package, it also lacks testing routines. Best is to unpack this
+Git repo and just run from the `ssbdrv` directory after installing the
+dependencies (see `requirements.txt`). In the future, when the
+internal interfaces of `ssbdrv` have stabilized, a full Python package
+will be provided, probably also factoring out the SSB peer-to-peer
+component as an independent package. We acknowledge the import of
+pferreir's [`pyssb`](https://github.com/pferreir/pyssb) package which
+had to be made more complete: The modified `pyssb` code is included
+for convenience, making this `ssbdrv` repo self-contained.
+
 ## Demo
 
 _SSB Drive_ behaves like a classic FTP client except that you don't have
@@ -90,19 +101,19 @@ where options are:
 UUID                ssb-drive's uuid (default is youngest drive)
 ```
 
-### Experimenting with SSB Drive or testing local developments
+### Experimenting with SSB Drive and/or testing local developments
 
 In order to perform local experiments with the SSB Drive Protocol, it
-is possible **and advised** to run with local SSB users rather than your
-own ID. To this end, for each user USERNAME, we keep a subdirectory with
-the following format:
+is possible **and advised** to run with local SSB users rather than
+your own ID. To this end, for each user USERNAME, we keep a
+subdirectory with the following format:
 ```txt
 ~/.ssb/user.USERNAME
 ```
 and populate it with the standard SSB data. The _SSB Drive_ software
 offers an easy way to create new users as follows:
 ```txt
-# DEMO STEPS 1
+# LOCAL DEMO STEPS 1
 
 $ ./ssb/local/config.py -list
 default user:
@@ -128,7 +139,7 @@ how this is done. Once this is established, we will (i) create a
 drive on Alice's side, (ii) let Bob sync with Alice's content, and
 (iii) start also Bob's _SSB Drive_ client:
 ```txt
-# DEMO STEPS 2
+# LOCAL DEMO STEPS 2
 
 $ ./ssb/local/config.py -friends Alice Bob
 ** friend records updated
