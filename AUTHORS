@@ -1,0 +1,11 @@
+# AUTHORS
+
+ssbdrv             copyright (c) <christian.tschudin@unibas.ch>
+pyssb              copyright (c) Pedro Ferreira <pedro@dete.st>
+PySecretHandshake  copyright (c) Pedro Ferreira <pedro@dete.st>
+
+This repo:
+  https://github.com/tschudin/ssbdrv
+includes code from:
+  https://github.com/pferreir/pyssb
+  https://github.com/pferreir/PySecretHandshake
