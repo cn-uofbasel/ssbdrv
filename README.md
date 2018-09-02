@@ -90,7 +90,7 @@ where options are:
 UUID                ssb-drive's uuid (default is youngest drive)
 ```
 
-### Experimenting with SSB Drive and doing local development
+### Experimenting with SSB Drive or testing local developments
 
 In order to perform local experiments with the SSB Drive Protocol, it
 is possible **and advised** to run with local SSB users rather than your
@@ -100,31 +100,52 @@ the following format:
 ~/.ssb/user.USERNAME
 ```
 and populate it with the standard SSB data. The _SSB Drive_ software
-offers an easy way to do it directly as follows:
+offers an easy way to create new users as follows:
 ```txt
+# DEMO STEPS 1
+
+$ ./ssb/local/config.py -list
+default user:
+  @AiBJDta+4boyh2USNGwIagH/wKjeruTcDX2Aj1r/haM=.ed25519
+local users:
+
+$ ./ssb/local/config.py -new Alice
+** new user Alice (@C8pPydEHuGxCjFUYBLmBOGTIPkYQeZ3FnKvQTvT0MDk=.ed25519)
+$ ./ssb/local/config.py -new Bob
+** new user Bob (@ihS4TZa55eMjjWOC5oN+oF9GTvc23GQcGyt0xqJ1XD0=.ed25519)
+
 $ ./ssb/local/config.py -list
 default user:
   @AiBJDta+4boyh2USNGwIagH/wKjeruTcDX2Aj1r/haM=.ed25519
 local users:
   @C8pPydEHuGxCjFUYBLmBOGTIPkYQeZ3FnKvQTvT0MDk=.ed25519  Alice
   @ihS4TZa55eMjjWOC5oN+oF9GTvc23GQcGyt0xqJ1XD0=.ed25519  Bob
-  @dQZc5zeLorxwhzDOHn79sSnrOsWrapmVX/LtmyVuJb4=.ed25519  Carole
-
-$ ./ssb/local/config.py -new Dan
-** new user Dan (@m1SFdExhNI5k8hN3FVQpC2ZuzH8C0dcy9JyO9Xbp0lg=.ed25519)
 ```
-Consider to also create a `friends.json` file in the respective
-`flume` subdirectories and let the local users follow each other.
 
-Now you are ready to let two ssb-drive client instances connect as peers
-(each running in its own terminal window):
-
+Because peers only retrieve each other's logs if they follow each
+other, we have to populate the `friends.json` file for both, see below
+how this is done. Once this is established, we will (i) create a
+drive on Alice's side, (ii) let Bob sync with Alice's content, and
+(iii) start also Bob's _SSB Drive_ client:
 ```txt
+# DEMO STEPS 2
+
+$ ./ssb/local/config.py -friends Alice Bob
+** friend records updated
+
 $ ./ssb-drive.py -user Alice -new
 ** new drive created, uuid=9dfc8124-6a6b-5730-9c04-5eed67ac770e
 
-$ ./ssb-drive.py -user Alice -port 7007                # in one terminal
-$ ./ssb-drive.py -user Bob localhost:7007:ID_OF_ALICE  # in another terminal
+# start Alice's client in one terminal window:
+$ ./ssb-drive.py -user Alice -port 7007
+...
+
+# in another terminal window, let Bob sync up:
+$ ./ssb-drive.py -user Bob -sync -peer localhost:7007:ID_OF_ALICE
+...
+
+# and start his SSB Drive client:
+$ ./ssb-drive.py -user Bob -peer localhost:7007:ID_OF_ALICE
 ```
 
 It is also possible to run the _SSB Drive_ app in line mode by

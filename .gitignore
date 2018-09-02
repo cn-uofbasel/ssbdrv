@@ -109,4 +109,7 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+# emacs backups:
+*~
+
 # eof
