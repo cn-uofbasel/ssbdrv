@@ -13,9 +13,11 @@ rest of the world once you rejoin the grid. Name conflicts are handled
 with "Observed Removed Sets" (OR-Sets) from CRDT.
 
 Main usage:
+
 ```txt
 $ ./ssb-drive.py [-u USERNAME] [-l] [-peer ip:port:id] [UUID]
 ```
+
 where UUID identifies the drive to work on. Use `-l` to list all
 available drives. The `-peer` option selects a specific SSB pub (peer
 node); the default behavior is to connect to the locally running SSB
@@ -31,6 +33,9 @@ component as an independent package. We acknowledge the import of
 pferreir's [`pyssb`](https://github.com/pferreir/pyssb) package which
 had to be made more complete: The modified `pyssb` code is included
 for convenience, making this `ssbdrv` repo self-contained.
+
+__Doc status__: Read the source, Luke. Moreover, there is a draft document
+on tangles for SSB in this Git repo, see ['The Tangle data structure and its use in SSB Drive'](doc/tangle.md)
 
 ## Demo
 
@@ -86,6 +91,7 @@ cft, Aug 2018
 ## Example CLI sessions
 
 The full signature of the _SSB Drive_ app is:
+
 ```txt
 $ ./ssb-drive.py [options] [UUID]
 where options are:
@@ -107,11 +113,14 @@ In order to perform local experiments with the SSB Drive Protocol, it
 is possible **and advised** to run with local SSB users rather than
 your own ID. To this end, for each user USERNAME, we keep a
 subdirectory with the following format:
+
 ```txt
 ~/.ssb/user.USERNAME
 ```
+
 and populate it with the standard SSB data. The _SSB Drive_ software
 offers an easy way to create new users as follows:
+
 ```txt
 # LOCAL DEMO STEPS 1
 
@@ -138,6 +147,7 @@ other, we have to populate the `friends.json` file for both, see below
 how this is done. Once this is established, we will (i) create a
 drive on Alice's side, (ii) let Bob sync with Alice's content, and
 (iii) start also Bob's _SSB Drive_ client:
+
 ```txt
 # LOCAL DEMO STEPS 2
 
@@ -163,6 +173,7 @@ It is also possible to run the _SSB Drive_ app in line mode by
 selecting the `-tty` option. Note however that this mode does not
 yet support peer connections i.e., you will work on the given
 user's log __as if offline__:
+
 ```txt
 $ ./ssb-drive.py -user Alice -tty
 Secure Scuttlebutt Drive client (v2018-08-21).  Type ? for help.
