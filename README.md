@@ -24,18 +24,25 @@ node); the default behavior is to connect to the locally running SSB
 program at port 8008 (e.g. patchwork or sbot).
 
 __Code status:__ This is a proof-of-concept and is not a well-curated
-Python package, it also lacks testing routines. Best is to unpack this
-Git repo and just run from the `ssbdrv` directory after installing the
-dependencies (see `requirements.txt`). In the future, when the
-internal interfaces of `ssbdrv` have stabilized, a full Python package
-will be provided, probably also factoring out the SSB peer-to-peer
-component as an independent package. We acknowledge the import of
-pferreir's [`pyssb`](https://github.com/pferreir/pyssb) package which
-had to be made more complete: The modified `pyssb` code is included
-for convenience, making this `ssbdrv` repo self-contained.
+Python package, it also lacks testing routines. __DON'T RUN THIS CODE
+ON YOUR LOG__: It's very hard --and often impossible-- to correct a
+corrupted hash chain especially if it has leaked into the global SSB
+system. Please read the section "Experimenting with SSB Drive" for
+safe ways to work locally - you have been warned.
+
+Best is to unpack this Git repo and just run from the `ssbdrv`
+directory after installing the dependencies (see
+`requirements.txt`). In the future, when the internal interfaces of
+`ssbdrv` have stabilized, a full Python package will be provided,
+probably also factoring out the SSB peer-to-peer component as an
+independent package. We acknowledge the import of pferreir's
+[`pyssb`](https://github.com/pferreir/pyssb) package which had to be
+made more complete: The modified `pyssb` code is included for
+convenience, making this `ssbdrv` repo self-contained.
 
 __Doc status__: Read the source, Luke. Moreover, there is a draft document
-on tangles for SSB in this Git repo, see ['The Tangle data structure and its use in SSB Drive'](doc/tangle.md)
+on tangles for SSB in this Git repo, see
+['The Tangle data structure and its use in SSB Drive'](doc/tangle.md)
 
 ## Demo
 
